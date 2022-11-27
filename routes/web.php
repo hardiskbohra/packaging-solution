@@ -23,3 +23,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+//user
+Route::get('/user-list',[App\Http\Controllers\UserController::class, 'index'])->name('user.list');
