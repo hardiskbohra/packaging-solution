@@ -201,7 +201,7 @@
                                 <div class="user-nav d-sm-flex d-none"><span class="user-name">John Doe</span><span class="user-status text-muted">Available</span></div><span><img class="round" src="./app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="bx bx-envelope mr-50"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a>
-                                <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="auth-login.html"><i class="bx bx-power-off mr-50"></i> Logout</a>
+                                <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{route('logout')}}"><i class="bx bx-power-off mr-50"></i> Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -239,7 +239,7 @@
            
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">User</span></a>
                 <ul class="menu-content">
-                    <li><a href="{{route('user.list')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">List</span></a>
+                    <li><a href="{{route('users.index')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">List</span></a>
                     </li>
                     <li><a href="page-users-view.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="View">View</span></a>
                     </li>
@@ -289,8 +289,8 @@
             </li>
         </ul>
     </div>
-</div>
-<!-- END: Main Menu-->
+   </div>
+   <!-- END: Main Menu-->
 
 
     <!-- BEGIN: Content-->
@@ -359,6 +359,7 @@
                                                     <th>role</th>
                                                     <th>status</th>
                                                     <th>edit</th>
+                                                    <th>action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -372,7 +373,17 @@
                                                     <td>No</td>
                                                     <td>Staff</td>
                                                     <td><span class="badge badge-light-success">Active</span></td>
-                                                    <td><a href="./html/ltr/vertical-menu-template/page-users-edit.html"><i class="bx bx-edit-alt"></i></a></td>
+                                                    <td>
+                                                        <a href="{{route('users.edit',$user->id)}}"><i class="bx bx-edit-alt"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <form method="POST" action="{{route('users.destroy',$user->id)}}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="badge badge-light-danger" style="border: none">delete</i></button>
+                                                        </form> 
+                                                    </td>
+                                                    
                                                 </tr>
                                                 @endforeach
                                                 

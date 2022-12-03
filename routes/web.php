@@ -25,4 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 
 //user
-Route::get('/user-list',[App\Http\Controllers\UserController::class, 'index'])->name('user.list');
+// Route::get('/user-list',[App\Http\Controllers\UserController::class, 'index'])->name('user.list');
+// Route::get('/users/{id}',[App\Http\Controllers\UserController::class, 'edit'])->name('user.show');
+// Route::post('/users/{id}',[App\Http\Controllers\UserController::class, 'update']);
+Route::resource('users', App\Http\Controllers\UserController::class);
+
+// Route::resource('users',App\Http\Controllers\UserController::class);
