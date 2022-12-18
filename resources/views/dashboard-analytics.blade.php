@@ -237,15 +237,8 @@
             <li class=" navigation-header"><span>User Management</span>
             </li>
            
-            <li class=" nav-item"><a href="{{route('users.index')}}"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">User</span></a>
-                <ul class="menu-content">
-                    <li><a href="{{route('users.index')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">List</span></a>
-                    </li>
-                    <li><a href="page-users-view.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="View">View</span></a>
-                    </li>
-                    <li><a href="page-users-edit.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
-                    </li>
-                </ul>
+            <li class=" nav-link"><a href="{{route('users.index')}}"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">User</span></a>
+                
             </li>
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="unlink"></i><span class="menu-title" data-i18n="Starter kit">Starter kit</span></a>
                 <ul class="menu-content">
