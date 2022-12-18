@@ -364,6 +364,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($users as $user)
+                                               {{-- {{ dd($user->role->id);}} --}}
                                                 <tr>
                                                     <td>{{$user->id}}</td>
                                                     <td><a href="./html/ltr/vertical-menu-template/page-users-view.html">{{$user->name}}</a>
@@ -371,7 +372,7 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>30/04/2019</td>
                                                     <td>No</td>
-                                                    <td>Staff</td>
+                                                    <td><center>{{empty($user->role) ? '-' : $user->role->name}}</center></td>
                                                     <td><span class="badge badge-light-success">Active</span></td>
                                                     <td>
                                                         <a href="{{route('users.edit',$user->id)}}"><i class="bx bx-edit-alt"></i></a>

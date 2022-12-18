@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-       $users = User::all();
+       $users = User::with('role')->get();
        return view('user.list', compact('users'));
     }
    
@@ -22,7 +22,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit',compact('user'));
+        $roles = \App\Models\Role::select('id','name')->get();
+        return view('user.edit',compact(['user','roles']));
     }
 
     // public function edit($id)
@@ -37,7 +38,7 @@ class UserController extends Controller
     // }
     public function update(Request $request, User $user)
     {
-        $user->update($request->only('name','email'));
+        $user->update($request->only('name','email','role_id'));
     
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
