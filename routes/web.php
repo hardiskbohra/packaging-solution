@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\RoleMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
 });
 
-Route::view('/dashboard', 'dashboard-analytics');
+Route::view('dashboard', 'dashboard-analytics')->middleware(['auth']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+Route::resource('users', App\Http\Controllers\UserController::class);
+Route::middleware([RoleMiddleware::class])->group(function(){
+    Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+});
+
