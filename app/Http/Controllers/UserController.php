@@ -10,9 +10,9 @@ class UserController extends Controller
     public function index()
     {
        $users = User::with('role')->get();
-       return view('user.list', compact('users'));
+       return view('user.list_copy', compact('users'));
     }
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->only('name','email','role_id'));
-    
+
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
     }
@@ -53,10 +53,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        
+
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
-  
+
 }
 // https://www.itsolutionstuff.com/post/laravel-8-crud-application-tutorial-for-beginnersexample.html

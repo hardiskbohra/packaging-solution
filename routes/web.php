@@ -15,9 +15,9 @@ use App\Http\Middleware\RoleMiddleware;
 
 Route::get('/', function () {
     return redirect('/dashboard');
-});
+})->name('dashboard');
 
-Route::view('dashboard', 'dashboard-analytics')->middleware(['auth']);
+Route::view('dashboard', 'dashboard-analytics_copy')->middleware(['auth']);
 
 Auth::routes();
 
@@ -25,6 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
 Route::middleware([RoleMiddleware::class])->group(function(){
     Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');

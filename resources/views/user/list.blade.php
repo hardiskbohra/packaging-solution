@@ -30,7 +30,7 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="./app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="./app-assets/css/pages/page-users.css">
+    {{-- <link rel="stylesheet" type="text/css" href="./app-assets/css/pages/page-users.css"> --}}
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -236,7 +236,7 @@
             </li>
             <li class=" navigation-header"><span>User Management</span>
             </li>
-           
+
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">User</span></a>
                 <ul class="menu-content">
                     <li><a href="{{route('users.index')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="List">List</span></a>
@@ -247,6 +247,20 @@
                     </li>
                 </ul>
             </li>
+
+            <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Invoice</span></a>
+                <ul class="menu-content">
+                    <li><a href="{{route('invoices.index')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Invoice List</span></a>
+                    </li>
+                    <li><a href="app-invoice.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">Invoice</span></a>
+                    </li>
+                    <li><a href="app-invoice-edit.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Invoice Edit</span></a>
+                    </li>
+                    <li class="active"><a href="{{route('invoices.create')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add123       </span></a>
+                    </li>
+                </ul>
+            </li>
+
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="unlink"></i><span class="menu-title" data-i18n="Starter kit">Starter kit</span></a>
                 <ul class="menu-content">
                     <li><a href="/starter-kit/ltr/vertical-menu-template/sk-layout-1-column.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="1 column">1 column</span></a>
@@ -277,8 +291,8 @@
                     </li>
                 </ul>
             </li>
-           
-          
+
+
             <li class="disabled nav-item"><a href="#"><i class="menu-livicon" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Disabled Menu</span></a>
             </li>
             <li class=" navigation-header"><span>Support</span>
@@ -382,13 +396,13 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="badge badge-light-danger" style="border: none">delete</i></button>
-                                                        </form> 
+                                                        </form>
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 @endforeach
-                                                
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>
