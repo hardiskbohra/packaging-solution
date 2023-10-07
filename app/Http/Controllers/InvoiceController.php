@@ -16,9 +16,9 @@ class InvoiceController extends Controller
 
     public function create()
     {
-    //    $users = User::with('role')->get();
-    //    return view('user.list', compact('users'));
-        return view('invoice.add');
+
+        $invoice_no = 0001;
+        return view('invoice.add',compact('invoice_no'));
 
     }
 
