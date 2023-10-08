@@ -17,6 +17,19 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('invoice_number')->nullable()->index();
             $table->integer('customer_id')->nullable()->index();
+            $table->date('date');
+
+            $table->double('sub_total',16,2)->nullable()->index();
+
+            $table->integer('discount_percentange')->nullable()->index();
+            $table->integer('discount_ammount')->nullable()->index();
+            $table->double('total_discount',16,2)->nullable()->index();
+
+            $table->double('total',16,2)->nullable()->index();
+            $table->double('paid_ammount',16,2)->nullable()->index();
+            $table->double('remaining_ammount',16,2)->nullable()->index();
+
+
             $table->timestamps();
         });
     }
