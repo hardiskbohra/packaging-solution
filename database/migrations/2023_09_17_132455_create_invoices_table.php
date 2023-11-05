@@ -17,7 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('invoice_number')->nullable()->index();
             $table->integer('customer_id')->nullable()->index();
-            $table->date('date');
+            $table->date('date')->nullable()->index();
+            $table->date('delivery_date')->nullable()->index();
 
             $table->double('sub_total',16,2)->nullable()->index();
 

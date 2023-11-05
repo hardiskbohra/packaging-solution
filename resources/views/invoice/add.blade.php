@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
-    /* word-wrap: break-word; */
+    word-wrap: normal !important;
     background-color: #FFFFFF;
     background-clip: border-box;
     border: 0px solid #dfe3e7;
@@ -140,8 +140,8 @@
                                                         </dt>
                                                         <dd class="col-sm-6 d-flex justify-content-md-end">
                                                             <div class="w-px-150">
-                                                                <input type="text" class="form-control" disabled=""
-                                                                    placeholder="3905" value="{{$invoice_no}}" id="invoiceId">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3905" value="{{$invoice_no}}" name="invoice_no" id="invoiceId">
                                                             </div>
                                                         </dd>
                                                         <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
@@ -156,6 +156,17 @@
                                                             </div>
                                                         </dd>
                                                         <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
+                                                            <span class="fw-normal">Delievery Date:</span>
+                                                        </dt>
+                                                        <dd class="col-sm-6 d-flex justify-content-md-end">
+                                                            <div class="w-px-150 d-flex">
+                                                                <input type="text"
+                                                                    class="form-control pickadate"
+                                                                    placeholder="YYYY-MM-DD" readonly="readonly" id="delivery_date" name="delivery_date">
+
+                                                            </div>
+                                                        </dd>
+                                                        {{-- <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
                                                             <span class="fw-normal">Due Date:</span>
                                                         </dt>
                                                         <dd class="col-sm-6 d-flex justify-content-md-end">
@@ -164,7 +175,7 @@
                                                                     class="form-control date-picker flatpickr-input"
                                                                     placeholder="YYYY-MM-DD" readonly="readonly">
                                                             </div>
-                                                        </dd>
+                                                        </dd> --}}
                                                     </dl>
                                                 </div>
                                             </div>
@@ -194,7 +205,7 @@
                                                         <input type="number" name="ph_number" class="form-control"
                                                             placeholder="Phone Number">
                                                     </fieldset>
-                                                    <fieldset class="invoice-address form-group">
+                                                   {{-- <fieldset class="invoice-address form-group">
                                                         <input type="text" name="house_no" class="form-control"
                                                             placeholder="House no.">
                                                     </fieldset>
@@ -207,7 +218,7 @@
                                                     <fieldset class="invoice-address form-group">
                                                         <input type="number" name="pincode" class="form-control"
                                                             placeholder="Pincode">
-                                                    </fieldset>
+                                                    </fieldset> --}}
 
                                                 </div>
                                             </div>
@@ -232,11 +243,13 @@
                                                                     <div class="col-12 col-md-4 form-group">
                                                                         <select class="form-control invoice-item-select"
                                                                             name="item[0][type]">
-                                                                            <option value="1">shirt</option>
-                                                                            <option value="2">pent</option>
-                                                                            <option value="3">shirting</option>
-                                                                            <option value="4">suiting</option>
-                                                                            <option value="5">Modern Admin Template
+                                                                            <option value="shirt">shirt</option>
+                                                                            <option value="pent">pent</option>
+                                                                            <option value="kurta">kurta</option>
+                                                                            <option value="lengha">lengha</option>
+                                                                            <option value="shirting">shirting</option>
+                                                                            <option value="suiting">suiting</option>
+                                                                            <option value="stitching">stitching</option>
                                                                             </option>
                                                                         </select>
                                                                     </div>

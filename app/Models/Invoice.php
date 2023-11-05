@@ -13,6 +13,7 @@ class Invoice extends Model
     	'invoice_number',
     	'customer_id',
     	'date',
+        'delivery_date',
     	'sub_total',
     	'discount_percentange',
     	'discount_ammount',
