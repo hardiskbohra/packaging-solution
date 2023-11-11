@@ -556,4 +556,18 @@
     <script src="/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
     <script src="/app-assets/js/scripts/pages/app-invoice.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        /* set invoice issue date */
+        var date = new Date();
+        var picker = $('#date').pickadate();
+        var calendar = picker.data('pickadate');
+        calendar.set('select', date);
+
+        /* set delivery date */
+        var deliveryDate = new Date(new Date().getTime() + 10 * 24*60*60*1000);
+        var picker = $('#delivery_date').pickadate();
+        var calendar = picker.data('pickadate');
+        calendar.set('select', deliveryDate);
+
+    </script>
 @endsection

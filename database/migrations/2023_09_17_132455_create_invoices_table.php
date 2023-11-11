@@ -20,16 +20,18 @@ return new class extends Migration
             $table->date('date')->nullable()->index();
             $table->date('delivery_date')->nullable()->index();
 
-            $table->double('sub_total',16,2)->nullable()->index();
+            $table->double('sub_total',16,2)->default(0);
 
-            $table->integer('discount_percentange')->nullable()->index();
-            $table->integer('discount_ammount')->nullable()->index();
-            $table->double('total_discount',16,2)->nullable()->index();
+            $table->double('discount_percentange',16,2)->default(0);
+            $table->double('discount_ammount',16,2)->default(0);
+            $table->double('total_discount',16,2)->default(0);
 
-            $table->double('total',16,2)->nullable()->index();
-            $table->double('paid_ammount',16,2)->nullable()->index();
-            $table->double('remaining_ammount',16,2)->nullable()->index();
+            $table->double('total',16,2)->default(0);
+            $table->double('paid_ammount',16,2)->default(0);
+            $table->double('remaining_ammount',16,2)->default(0);
 
+            $table->string('payment_status')->nullable()->index();
+            $table->string('delivery_status')->nullable()->index();
 
             $table->timestamps();
         });

@@ -18,8 +18,21 @@ class Invoice extends Model
     	'discount_percentange',
     	'discount_ammount',
     	'total_discount',
+        'payment_status',
     	'total',
     	'paid_ammount',
     	'remaining_ammount',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
+    }
+
+    public function incoiceItems()
+    {
+        return $this->hasMany('App\Models\InvoiceItem', 'invoice_id');
+    }
+
+
 }
