@@ -83,16 +83,16 @@ $(document).ready(function () {
     });
 
     //dynamic price change
-    $(document).on('input', '.cost-input, .qty-input', function () {
+    $(document).on('input', '.cost-input, .quantity-input', function () {
         // alert("sdfsdfs")
         var index = $(this).attr('name').match(/\d+/)[0];
 
         // Get the corresponding cost and quantity values
         var cost = parseFloat($(`input[name="item[${index}][cost]"]`).val()) || 0;
-        var qty = parseFloat($(`input[name="item[${index}][qty]"]`).val()) || 0;
+        var quantity = parseFloat($(`input[name="item[${index}][quantity]"]`).val()) || 0;
 
         // Calculate total price
-        var totalPrice = cost * qty;
+        var totalPrice = cost * quantity;
 
         // Update the price label
         $(`strong[name="item[${index}][price]"]`).text('₹ ' + totalPrice.toFixed(2));

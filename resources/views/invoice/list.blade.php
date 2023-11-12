@@ -200,11 +200,14 @@
                                                         </td>
                                                         @endif
                                                         <td>
-                                                            <form method="POST" action="{{route('invoices.destroy',$invoice->id)}}">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="badge badge-light-danger" style="border: none">delete</i></button>
-                                                            </form>
+                                                            <a href="{{ route('invoice.print',['id' => $invoice->id]) }}" target="_blank"><i class="bx bx-printer" style="font-size: 1.9rem"></i></a>
+
+
+                                                            {{-- <form method="POST" action="{{route('invoices.destroy',$invoice->id)}}"> --}}
+                                                                {{-- @csrf --}}
+                                                                {{-- @method('DELETE') --}}
+                                                                {{-- <button type="submit" class="badge badge-light-danger" style="border: none">delete</i></button> --}}
+                                                            {{-- </form> --}}
                                                         </td>
 
                                                     </tr>

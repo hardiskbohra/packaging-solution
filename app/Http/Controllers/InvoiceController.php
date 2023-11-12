@@ -150,4 +150,12 @@ class InvoiceController extends Controller
         }
     }
 
+
+    public function printInvoice(Request $request)
+    {
+
+        $invoice = Invoice::with(['customer','incoiceItems'])->where('id',$request->id)->first();
+        return view('invoice.preview',compact('invoice'));
+    }
+
 }

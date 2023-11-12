@@ -261,9 +261,9 @@
                                                                             placeholder="0">
                                                                     </div>
                                                                     <div class="col-md-3 col-12 form-group">
-                                                                        <input type="text" id="item[0][qty]"
-                                                                            name="item[0][qty]"
-                                                                            class="qty-input form-control"
+                                                                        <input type="text" id="item[0][quantity]"
+                                                                            name="item[0][quantity]"
+                                                                            class="quantity-input form-control"
                                                                             placeholder="0">
                                                                     </div>
                                                                     <div class="col-md-2 col-12 form-group"
