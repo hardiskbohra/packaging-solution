@@ -7,7 +7,164 @@
     Author: PIXINVENT
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+var totalAmount = 0;
+
 $(document).ready(function () {
+
+
+    //------------add payment ------------------------
+    $('#addPaymentBtn').on('click', function () {
+        // Collect data from the form
+        var formData = $('#addPaymentForm').serialize();
+        console.log(formData);
+        alert("ok");
+        // Make an AJAX call to store payment history
+        $.ajax({
+            url: '/add-payment-history', // Replace with your actual route
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                // Handle the success response (if needed)
+                console.log(response);
+                location.reload();
+
+            },
+            error: function (error) {
+                // Handle the error (if needed)
+                console.error(error);
+            }
+        });
+    });
+    //------------add payment ------------------------
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var nameInput = $('input[name="customer_name"]');
+    var phoneInput = $('input[name="ph_number"]');
+    phoneInput.focus();
+
+   phoneInput.on('input', function () {
+        // Clear the name field when the phone number changes
+        nameInput.val('');
+
+        var phoneNumber = $(this).val();
+
+        // Check if the phone number has 10 digits
+        if (phoneNumber.length === 10) {
+            // Make an AJAX call to get the customer name
+            $.ajax({
+                url: '/get-customer-name',
+                type: 'POST',
+                data: {ph_number: phoneNumber},
+                success: function (response) {
+                    // Check if a name is returned in the response
+                    if (response.customer_name) {
+                        // Make the name field readonly
+                        nameInput.prop('readonly', true);
+                    } else {
+                        // Make the name field editable
+                        nameInput.prop('readonly', false);
+                    }
+
+                    // Set the value of the name field
+                    nameInput.val(response.customer_name);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        } else {
+            // If the phone number is not 10 digits, make the name field editable
+            nameInput.prop('readonly', false);
+        }
+    });
+
+    //dynamic price change
+    $(document).on('input', '.cost-input, .qty-input', function () {
+        // alert("sdfsdfs")
+        var index = $(this).attr('name').match(/\d+/)[0];
+
+        // Get the corresponding cost and quantity values
+        var cost = parseFloat($(`input[name="item[${index}][cost]"]`).val()) || 0;
+        var qty = parseFloat($(`input[name="item[${index}][qty]"]`).val()) || 0;
+
+        // Calculate total price
+        var totalPrice = cost * qty;
+
+        // Update the price label
+        $(`strong[name="item[${index}][price]"]`).text('₹ ' + totalPrice.toFixed(2));
+        $(`input[name="item[${index}][price]"]`).val(totalPrice.toFixed(2));
+        $(`input[name="item[${index}][price]"]`).trigger('change');
+        $('#discount_amount').trigger('input');
+    });
+
+    $(document).on('change', 'input[name^="item["][name$="[price]"]', function () {
+        var total = 0;
+        $('input[name^="item["][name$="[price]"]').each(function() {
+            var price = parseFloat($(this).val()) || 0;
+            total += price;
+        });
+
+        // Update the total label
+        $('.subtotal').text('₹ ' +total.toFixed(2));
+        $('#subtotal').val(total.toFixed(2));
+    });
+
+    $(document).on('input', '#discount_amount, #discount_percentage, #paid_amount', function () {
+        totalAmount = parseFloat($('#subtotal').val()) || 0;
+
+        var discountPercentage = parseFloat($('#discount_percentage').val()) || 0;
+        var discountAmount = parseFloat($('#discount_amount').val()) || 0;
+        var paidAmount = parseFloat($('#paid_amount').val()) || 0;
+        var discountedAmount = 0;
+
+        $(".amount_discount_value").text(discountAmount.toFixed(2));
+
+        if (discountPercentage > 0 && discountPercentage <= 100) {
+            discountedAmount = (totalAmount * (discountPercentage / 100));
+        }
+        $(".percentage_discount_value").text(discountedAmount.toFixed(2));
+
+        discountedAmount += discountAmount
+        $('.total_discount_value').text('- ₹ ' +discountedAmount.toFixed(2));
+        $("#total_discount").val(discountedAmount.toFixed(2));
+
+
+        //showing total = sub total - discount
+        $("#total").val((totalAmount - discountedAmount).toFixed(2));
+        $(".total").text(' ₹ ' +(totalAmount - discountedAmount).toFixed(2));
+
+        //changing paid amount value
+        if(parseFloat($('#paid_amount').val()) != '' && parseFloat($('#paid_amount').val()) > 0)
+        {
+            $(".paid_amount").text(' ₹ '+parseFloat($('#paid_amount').val()) || 0);
+        }
+        else
+        {
+            $(".paid_amount").text(' ₹ '+ 0.00);
+        }
+
+        var totalPayAmount = totalAmount - discountedAmount;
+        if (totalPayAmount - paidAmount > 0) {
+            $(".remaining_amount_text").text(' ₹ ' +(totalPayAmount - paidAmount).toFixed(2));
+            $("#remaining_amount").val((totalPayAmount - paidAmount).toFixed(2));
+        }
+
+    });
+
+    $(document).on('click', '.close_button', function () {
+        console.log($(this).closest(".raw_amount").val());
+    });
+
+
+$('.close_button').click(function () {
+    $('cost-input').trigger('input');
+});
+
+
   /********Invoice View ********/
   // ---------------------------
   // init date picker
@@ -105,6 +262,7 @@ $(document).ready(function () {
       }
     });
   }
+
   // dropdown form's prevent parent action
   $(document).on("click", ".invoice-tax", function (e) {
     e.stopPropagation();
