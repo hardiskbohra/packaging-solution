@@ -11,9 +11,8 @@ class PaymentHistory extends Model
     public $table = 'payment_histories';
     protected $fillable = [
     	'invoice_id',
-    	'customer_id',
     	'date',
-    	'paid_ammount',
-    	'payment_method',
+    	'paid_amount',
+    	'payment_mode',
     ];
 }

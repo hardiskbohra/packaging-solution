@@ -198,13 +198,14 @@
                                                 <div class="col-lg-6 col-md-12 mt-25">
                                                     <h6 class="invoice-to">Bill To</h6>
                                                     <fieldset class="invoice-address form-group">
-                                                        <input type="text" name="customer_name" class="form-control"
-                                                            placeholder="Customer Name">
-                                                    </fieldset>
-                                                    <fieldset class="invoice-address form-group">
                                                         <input type="number" name="ph_number" class="form-control"
                                                             placeholder="Phone Number">
                                                     </fieldset>
+                                                    <fieldset class="invoice-address form-group">
+                                                        <input type="text" name="customer_name" class="form-control"
+                                                            placeholder="Customer Name">
+                                                    </fieldset>
+
                                                    {{-- <fieldset class="invoice-address form-group">
                                                         <input type="text" name="house_no" class="form-control"
                                                             placeholder="House no.">

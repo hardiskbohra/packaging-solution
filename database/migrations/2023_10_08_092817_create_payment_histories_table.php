@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('invoice_id')->nullable()->index();
-            $table->integer('customer_id')->nullable()->index();
             $table->date('date');
-            $table->double('paid_ammount',16,2)->nullable()->index();
-            $table->string('payment_method')->nullable()->index();
+            $table->double('paid_amount',16,2)->nullable()->index();
+            $table->string('payment_mode')->nullable()->index();
             $table->timestamps();
         });
     }

@@ -113,4 +113,41 @@ class InvoiceController extends Controller
 
         return $invoiceNumber;
     }
+
+    public function getCustomerName(Request $request)
+    {
+        $phoneNumber = $request->input('ph_number');
+
+        // Perform a database query to get the customer name based on the phone number
+        $customer = Customer::where('phone_number', $phoneNumber)->first();
+
+        if ($customer) {
+            return response()->json(['customer_name' => $customer->name]);
+        } else {
+            return response()->json(['customer_name' => 'Customer not found'], 404);
+        }
+    }
+
+    public function addPaymentHistory(Request $request)
+    {
+        \App\Models\PaymentHistory::create(
+                [
+                    'invoice_id' => $request->id,
+                    'date' => Carbon::now(),
+                    'paid_amount' => $request->remaining_amount,
+                    'payment_mode' => $request->payment_mode,
+                ]
+            );
+
+        $invoice = \App\Models\Invoice::find($request->id);
+        if($invoice)
+        {
+
+            $invoice->paid_ammount = $invoice->paid_ammount + $request->remaining_amount;
+            $invoice->remaining_ammount = $invoice->remaining_ammount - $request->remaining_amount;
+            $invoice->payment_status = ($invoice->remaining_ammount <= 0 ? 'paid' : 'unpaid');
+            $invoice->save();
+        }
+    }
+
 }

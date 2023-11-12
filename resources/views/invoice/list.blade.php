@@ -19,7 +19,6 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/css/style.css">
     <!-- END: Custom CSS-->
-
 @endsection
 
 @section('content')
@@ -125,12 +124,81 @@
                                                         <td>{{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}</td>
                                                         <td>{{$invoice->total}}</td>
                                                         <td>{{$invoice->paid_ammount}}</td>
-                                                        <td style="color: red">{{$invoice->remaining_ammount}}</td>
-                                                        {{-- <td><center>{{empty($user->role) ? '-' : $user->role->name}}</center></td> --}}
-                                                        {{-- <td><span class="badge badge-light-success">Active</span></td> --}}
-                                                        <td>
-                                                            <a href="{{route('invoices.edit',$invoice->id)}}"><i class="bx bx-edit-alt"></i></a>
+                                                        <td  style="{{ $invoice->remaining_ammount > 0 ? 'color: red;' : '' }}">{{$invoice->remaining_ammount}}</td>
+                                                        @if ($invoice->remaining_ammount > 0)
+
+                                                            <td>
+                                                                <button class="badge badge-danger" style="border: none" data-toggle="modal" data-target="#inlineForm{{$invoice->id}}">mark as paid</i></button>
+
+                                                                <div class="modal fade text-left" id="inlineForm{{$invoice->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title" id="myModalLabel33">Add Payment </h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <i class="bx bx-x"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                            <form action="#" id="addPaymentForm">
+                                                                                <div class="modal-body">
+                                                                                    <input type="hidden" name="id" value="{{$invoice->id}}">
+                                                                                    <label>Invoice No.: </label>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" class="form-control" value="{{$invoice->invoice_number}}" readonly>
+                                                                                    </div>
+                                                                                    <label>Customer: </label>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" class="form-control" value="{{$invoice->customer->name}}" readonly>
+                                                                                    </div>
+                                                                                    <label>TOtal: </label>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" class="form-control" value="{{$invoice->total}}" readonly>
+                                                                                    </div>
+                                                                                    <label>Paid Amount: </label>
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" class="form-control"  value="{{$invoice->paid_ammount}}" readonly>
+                                                                                    </div>
+                                                                                    <label>Remaining Amount: </label>
+                                                                                    {{-- <div class="form-group">
+                                                                                        <input type="text" name="remaining_amount" placeholder="remaining amount" class="form-control" value="{{$invoice->remaining_ammount}}">
+                                                                                    </div> --}}
+
+                                                                                    <div class="form-group">
+                                                                                        <input type="number" name="remaining_amount" placeholder="Remaining Amount" class="form-control" value="{{$invoice->remaining_ammount}}" min="0" max="{{$invoice->remaining_ammount}}" oninput="validity.valid||(value='');">
+                                                                                    </div>
+
+
+                                                                                    <label>Payment Mode: </label>
+                                                                                    <div class="form-group">
+                                                                                        <select class="form-control" id="Invoice-payment-mode" name="payment_mode">
+                                                                                            <option value="cash">Cash</option>
+                                                                                            <option value="card">Card</option>
+                                                                                            <option value="upi">UPI</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-light-secondary" data-dismiss="modal">
+                                                                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                                                                        <span class="d-none d-sm-block">Close</span>
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-primary ml-1" data-dismiss="modal" id="addPaymentBtn">
+                                                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                                                        <span class="d-none d-sm-block">Update</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </td>
+                                                        @else
+                                                        <td >
+                                                            <button class="badge badge-success" style="border: none; cursor:text" desabled>paid</i></button>
                                                         </td>
+                                                        @endif
                                                         <td>
                                                             <form method="POST" action="{{route('invoices.destroy',$invoice->id)}}">
                                                                 @csrf

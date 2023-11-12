@@ -11,6 +11,77 @@ var totalAmount = 0;
 
 $(document).ready(function () {
 
+
+    //------------add payment ------------------------
+    $('#addPaymentBtn').on('click', function () {
+        // Collect data from the form
+        var formData = $('#addPaymentForm').serialize();
+        console.log(formData);
+        alert("ok");
+        // Make an AJAX call to store payment history
+        $.ajax({
+            url: '/add-payment-history', // Replace with your actual route
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                // Handle the success response (if needed)
+                console.log(response);
+                location.reload();
+
+            },
+            error: function (error) {
+                // Handle the error (if needed)
+                console.error(error);
+            }
+        });
+    });
+    //------------add payment ------------------------
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var nameInput = $('input[name="customer_name"]');
+    var phoneInput = $('input[name="ph_number"]');
+    phoneInput.focus();
+
+   phoneInput.on('input', function () {
+        // Clear the name field when the phone number changes
+        nameInput.val('');
+
+        var phoneNumber = $(this).val();
+
+        // Check if the phone number has 10 digits
+        if (phoneNumber.length === 10) {
+            // Make an AJAX call to get the customer name
+            $.ajax({
+                url: '/get-customer-name',
+                type: 'POST',
+                data: {ph_number: phoneNumber},
+                success: function (response) {
+                    // Check if a name is returned in the response
+                    if (response.customer_name) {
+                        // Make the name field readonly
+                        nameInput.prop('readonly', true);
+                    } else {
+                        // Make the name field editable
+                        nameInput.prop('readonly', false);
+                    }
+
+                    // Set the value of the name field
+                    nameInput.val(response.customer_name);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        } else {
+            // If the phone number is not 10 digits, make the name field editable
+            nameInput.prop('readonly', false);
+        }
+    });
+
     //dynamic price change
     $(document).on('input', '.cost-input, .qty-input', function () {
         // alert("sdfsdfs")

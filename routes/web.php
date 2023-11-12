@@ -31,3 +31,8 @@ Route::middleware([RoleMiddleware::class])->group(function(){
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::post('/get-customer-name',  [App\Http\Controllers\InvoiceController::class, 'getCustomerName'])->name('getCustomerName');
+Route::post('/add-payment-history',  [App\Http\Controllers\InvoiceController::class, 'addPaymentHistory'])->name('addpaymentHistory');
+
+
+
