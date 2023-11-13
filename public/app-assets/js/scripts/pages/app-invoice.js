@@ -12,12 +12,36 @@ var totalAmount = 0;
 $(document).ready(function () {
 
 
+    //--------------update delivery status---------------------------
+    $('.delivery-status').on('change', '.delivery-checkbox', function() {
+        var checkbox = $(this);
+        var deliveryStatusTd = checkbox.closest('.delivery-status');
+        var invoiceId = deliveryStatusTd.data('invoice-id');
+
+        // Simulate an Ajax call to update the delivered status
+        $.ajax({
+            url: '/update-delivered-status',  // Replace with your actual endpoint
+            type: 'POST',
+            data: {
+                invoice_id: invoiceId,
+            },
+            success: function(response) {
+                // Update the badge based on the new delivered status
+                    deliveryStatusTd.html('<span class="badge badge-success delivery-badge">Delivered</span>');
+            },
+            error: function(error) {
+                console.error('Error updating delivery status:', error);
+            }
+        });
+    });
+    //--------------update delivery status---------------------------
+
+
     //------------add payment ------------------------
     $('#addPaymentBtn').on('click', function () {
         // Collect data from the form
         var formData = $('#addPaymentForm').serialize();
         console.log(formData);
-        alert("ok");
         // Make an AJAX call to store payment history
         $.ajax({
             url: '/add-payment-history', // Replace with your actual route

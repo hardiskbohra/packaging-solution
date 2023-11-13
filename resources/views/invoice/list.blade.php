@@ -19,6 +19,17 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/css/style.css">
     <!-- END: Custom CSS-->
+
+    <style>
+.table tbody tr {
+    transition: background-color 0.3s ease; /* Add a smooth color transition effect */
+}
+
+.table tbody tr:hover {
+    background-color: #f0f8ff; /* Change the background color to a slightly different shade on hover */
+}
+
+    </style>
 @endsection
 
 @section('content')
@@ -32,13 +43,13 @@
                 <!-- users list start -->
                 <section class="Invoice-list-wrapper">
                     <div class="Invoice-list-filter px-1">
-                        <form>
+                        <form id="invoiceSearchForm">
                             <div class="row border rounded py-2 mb-2">
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="Invoice-list-verified">Verified</label>
                                     <fieldset class="form-group">
                                         <input type="text" id="filter_customer_name"
-                                        name="name"
+                                        name="name" value="{{request('name') }}"
                                         class="form-control"
                                         placeholder="Customer Name">
                                     </fieldset>
@@ -47,7 +58,7 @@
                                     <label for="Invoice-list-verified">Phone Number</label>
                                     <fieldset class="form-group">
                                         <input type="text" id="filter_ph_number"
-                                        name="phone_number"
+                                        name="phone_number" value="{{request('phone_number') }}"
                                         class="form-control"
                                         placeholder="Phone Number">
                                     </fieldset>
@@ -55,20 +66,20 @@
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="Invoice-list-status">Date</label>
                                     <fieldset class="form-group">
-                                        <input type="text" id="date" name="date" class="form-control pickadate" placeholder="date" readonly="readonly">
+                                        <input type="text" id="date" name="date"   value="{{request('date') }}" class="form-control pickadate" placeholder="date" readonly="readonly">
                                     </fieldset>
                                 </div>
 
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="Invoice-list-status">Delivery Date</label>
                                     <fieldset class="form-group">
-                                        <input type="text" id="delivery_date" name="delivery_date" class="form-control pickadate" placeholder="delivery date" readonly="readonly">
+                                        <input type="text" id="delivery_date" name="delivery_date" value="{{request('delivery_date') }}" class="form-control pickadate" placeholder="delivery date" readonly="readonly">
                                     </fieldset>
                                 </div>
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="Invoice-list-role">Payment Status</label>
                                     <fieldset class="form-group">
-                                        <select class="form-control" id="Invoice-payment-status" name="payment_status">
+                                        <select class="form-control" id="Invoice-payment-status" name="payment_status" value="{{request('payment_status') }}">
                                                 <option value="">All</option>
                                                 <option value="paid">Paid</option>
                                                 <option value="unpaid">Unpaid</option>
@@ -80,6 +91,13 @@
                                         <button type="submit" class="btn btn-primary btn-block glow Invoice-list-clear mb-0">Search</button>
                                     </div>
 
+                                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
+                                        <a href="#" class="btn btn-success btn-block glow Invoice-list-clear mb-0" onclick="clearFilters()">Clear Filters</a>
+                                    </div>
+
+                                    {{-- <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
+                                        <button type="submit" class="btn btn-success btn-block glow Invoice-list-clear mb-0">Clear</button>
+                                    </div> --}}
 
                             </div>
 
@@ -99,9 +117,9 @@
                                                     <th>Customer</th>
                                                     <th>Phone No.</th>
                                                     <th>Date</th>
-                                                    <th>Delivery date</th>
+                                                    <th>Delivery</th>
                                                     <th>Total</th>
-                                                    <th>Paid Ammount</th>
+                                                    {{-- <th>Paid Ammount</th> --}}
                                                     <th>Remaining Ammount</th>
                                                     <th>Edit</th>
                                                     <th>Action</th>
@@ -121,9 +139,26 @@
                                                         <td>{{$invoice->customer->name}}</td>
                                                         <td>{{$invoice->customer->phone_number}}</td>
                                                         <td>{{ \Carbon\Carbon::parse($invoice->date)->format('d M')}}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}</td>
+                                                        {{-- <td>
+                                                            @if ($invoice->deliverd_status == 'yes')
+                                                                <button class="badge badge-success" style="border: none; cursor:text" desabled>deliverd</i></button>
+                                                            @else
+                                                                <input type="checkbox" class="delivery-checkbox" data-invoice-id="{{ $invoice->id }}" {{ $invoice->deliverd_status == 'yes' ? 'checked' : '' }}>
+                                                                {{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}
+                                                            @endif
+                                                        </td> --}}
+
+                                                        <td class="delivery-status" data-invoice-id="{{ $invoice->id }}" data-delivered="{{ $invoice->delivered_status }}">
+                                                            @if ($invoice->delivered_status == 'yes')
+                                                                <span class="badge badge-success delivery-badge">Delivered</span>
+                                                            @else
+                                                            <input type="checkbox" class="delivery-checkbox">
+                                                                {{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}
+                                                            @endif
+                                                        </td>
+
                                                         <td>{{$invoice->total}}</td>
-                                                        <td>{{$invoice->paid_ammount}}</td>
+                                                        {{-- <td>{{$invoice->paid_ammount}}</td> --}}
                                                         <td  style="{{ $invoice->remaining_ammount > 0 ? 'color: red;' : '' }}">{{$invoice->remaining_ammount}}</td>
                                                         @if ($invoice->remaining_ammount > 0)
 
@@ -221,6 +256,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class=" d-flex justify-content-end">
+                            {{ $invoices->appends(request()->query())->links() }}
+                        </div>
                     </div>
                 </section>
                 <!-- users list ends -->
@@ -243,5 +281,16 @@
     <script type="text/javascript">
         // CSRF Token
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    </script>
+
+    <script>
+        function clearFilters() {
+            // Reset form values
+            $('#filter_customer_name').val('');
+            $('#filter_ph_number').val('');
+            $('#date').val('');
+            $('#delivery_date').val('');
+            $('#Invoice-payment-status').val('');
+        }
     </script>
 @endsection

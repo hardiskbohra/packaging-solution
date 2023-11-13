@@ -31,7 +31,7 @@ return new class extends Migration
             $table->double('remaining_ammount',16,2)->default(0);
 
             $table->string('payment_status')->nullable()->index();
-            $table->string('delivery_status')->nullable()->index();
+            $table->enum('delivered_status', ['yes', 'no'])->default('no')->index();
 
             $table->timestamps();
         });
