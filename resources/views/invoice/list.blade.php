@@ -46,7 +46,7 @@
                         <form id="invoiceSearchForm">
                             <div class="row border rounded py-2 mb-2">
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                    <label for="Invoice-list-verified">Verified</label>
+                                    <label for="Invoice-list-verified">Customer Name</label>
                                     <fieldset class="form-group">
                                         <input type="text" id="filter_customer_name"
                                         name="name" value="{{request('name') }}"
@@ -95,17 +95,14 @@
                                         <a href="#" class="btn btn-success btn-block glow Invoice-list-clear mb-0" onclick="clearFilters()">Clear Filters</a>
                                     </div>
 
-                                    {{-- <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
-                                        <button type="submit" class="btn btn-success btn-block glow Invoice-list-clear mb-0">Clear</button>
-                                    </div> --}}
+                                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
+                                        <a href="{{route('invoices.create')}}"><button type="submit" class="btn btn-primary btn-block glow Invoice-create mb-0">Create New</button></a>
+                                    </div>
 
                             </div>
 
 
                         </form>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                        <a href="{{route('invoices.create')}}"><button type="submit" class="btn btn-primary btn-block glow Invoice-create mb-0">Create New</button></a>
                     </div>
                     <div class="users-list-table">
                         <div class="card">
