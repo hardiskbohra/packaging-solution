@@ -92,11 +92,11 @@
                 </li>
                 </li>
             @endif --}}
-            <li class=" navigation-header"><span>User Management</span>
+            <li class="navigation-header"><span>Store Management</span>
             </li>
 
-            <li class=" nav-item"><a href="{{route('users.index')}}"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">User</span></a></li>
-            <li class=" nav-item"><a href="{{route('invoices.index')}}"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Invoices</span></a>
+            <li class="nav-item"><a href="{{route('users.index')}}"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">Users</span></a></li>
+            <li class="nav-item"><a href="{{route('invoices.index')}}"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Invoices</span></a>
 <!--                 <ul class="menu-content">
                     <li><a href="{{route('invoices.index')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">Invoice List</span></a>
                     </li>
