@@ -95,8 +95,8 @@
                                         <a href="#" class="btn btn-success btn-block glow Invoice-list-clear mb-0" onclick="clearFilters()">Clear Filters</a>
                                     </div>
 
-                                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-right">
-                                        <a href="{{route('invoices.create')}}"><button type="submit" class="btn btn-primary btn-block glow Invoice-create mb-0">Create New</button></a>
+                                    <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-center">
+                                        <a href="{{route('invoices.create')}}" class="btn btn-success btn-block glow Invoice-create mb-0"">Create New</a>
                                     </div>
 
                             </div>
