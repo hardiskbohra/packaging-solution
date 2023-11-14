@@ -139,21 +139,11 @@
                                                         <td>{{$invoice->customer->name}}</td>
                                                         <td>{{$invoice->customer->phone_number}}</td>
                                                         <td>{{ \Carbon\Carbon::parse($invoice->date)->format('d M')}}</td>
-                                                        {{-- <td>
-                                                            @if ($invoice->deliverd_status == 'yes')
-                                                                <button class="badge badge-success" style="border: none; cursor:text" desabled>deliverd</i></button>
-                                                            @else
-                                                                <input type="checkbox" class="delivery-checkbox" data-invoice-id="{{ $invoice->id }}" {{ $invoice->deliverd_status == 'yes' ? 'checked' : '' }}>
-                                                                {{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}
-                                                            @endif
-                                                        </td> --}}
-
                                                         <td class="delivery-status" data-invoice-id="{{ $invoice->id }}" data-delivered="{{ $invoice->delivered_status }}">
                                                             @if ($invoice->delivered_status == 'yes')
-                                                                <span class="badge badge-success delivery-badge">Delivered</span>
+                                                                <span class="badge badge-success badge-pill badge-round delivery-badge">Delivered</span>
                                                             @else
-                                                            <input type="checkbox" class="delivery-checkbox">
-                                                                {{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}
+                                                                <button class="badge badge-light-green badge-pill badge-round delivery-badge" style="border: none"">{{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}</i></button>
                                                             @endif
                                                         </td>
 
