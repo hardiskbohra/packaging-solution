@@ -106,7 +106,7 @@
                     </li>
                     <li><a href="app-invoice-edit.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Edit">Invoice Edit</span></a>
                     </li>
-                    <li class="active"><a href="{{route('invoices.create')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add123       </span></a>
+                    <li class="active"><a href="{{route('invoices.create')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Invoice Add">Invoice Add       </span></a>
                     </li>
                 </ul>
             </li>

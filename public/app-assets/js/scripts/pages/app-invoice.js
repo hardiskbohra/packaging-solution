@@ -12,12 +12,36 @@ var totalAmount = 0;
 $(document).ready(function () {
 
 
+    //--------------update delivery status---------------------------
+    $('.delivery-status').on('click', function() {
+
+        var checkbox = $(this);
+        var deliveryStatusTd = checkbox.closest('.delivery-status');
+        var invoiceId = deliveryStatusTd.data('invoice-id');
+        // Simulate an Ajax call to update the delivered status
+        $.ajax({
+            url: '/update-delivered-status',  // Replace with your actual endpoint
+            type: 'POST',
+            data: {
+                invoice_id: invoiceId,
+            },
+            success: function(response) {
+                // Update the badge based on the new delivered status
+                    deliveryStatusTd.html('<span class="badge badge-success badge-pill badge-round delivery-badge">Delivered</span>');
+            },
+            error: function(error) {
+                console.error('Error updating delivery status:', error);
+            }
+        });
+    });
+    //--------------update delivery status---------------------------
+
+
     //------------add payment ------------------------
     $('#addPaymentBtn').on('click', function () {
         // Collect data from the form
         var formData = $('#addPaymentForm').serialize();
         console.log(formData);
-        alert("ok");
         // Make an AJAX call to store payment history
         $.ajax({
             url: '/add-payment-history', // Replace with your actual route
@@ -83,16 +107,16 @@ $(document).ready(function () {
     });
 
     //dynamic price change
-    $(document).on('input', '.cost-input, .qty-input', function () {
+    $(document).on('input', '.cost-input, .quantity-input', function () {
         // alert("sdfsdfs")
         var index = $(this).attr('name').match(/\d+/)[0];
 
         // Get the corresponding cost and quantity values
         var cost = parseFloat($(`input[name="item[${index}][cost]"]`).val()) || 0;
-        var qty = parseFloat($(`input[name="item[${index}][qty]"]`).val()) || 0;
+        var quantity = parseFloat($(`input[name="item[${index}][quantity]"]`).val()) || 0;
 
         // Calculate total price
-        var totalPrice = cost * qty;
+        var totalPrice = cost * quantity;
 
         // Update the price label
         $(`strong[name="item[${index}][price]"]`).text('₹ ' + totalPrice.toFixed(2));

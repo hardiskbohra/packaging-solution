@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\InvoiceItem;
 use App\Models\Invoice;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 
 class InvoiceController extends Controller
@@ -41,7 +42,9 @@ class InvoiceController extends Controller
                 $query->where('payment_status',$request->payment_status);
             }
         })
-        ->orderBy('created_at','DESC')->get();
+        ->orderBy('created_at','DESC')
+        ->paginate(10);
+        Paginator::useBootstrap();
         return view('invoice.list', compact('invoices'));
 
     }
@@ -150,4 +153,20 @@ class InvoiceController extends Controller
         }
     }
 
+
+    public function printInvoice(Request $request)
+    {
+
+        $invoice = Invoice::with(['customer','incoiceItems'])->where('id',$request->id)->first();
+        return view('invoice.preview',compact('invoice'));
+    }
+
+    public function updateDeliveredStatus(Request $request)
+    {
+        $invoice = Invoice::find($request->invoice_id);
+        $invoice->delivered_status = 'yes';
+        $invoice->save();
+
+        return response()->json(['message' => 'Delivered status updated successfully']);
+    }
 }

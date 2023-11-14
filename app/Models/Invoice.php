@@ -19,6 +19,7 @@ class Invoice extends Model
     	'discount_ammount',
     	'total_discount',
         'payment_status',
+        'delivered_status',
     	'total',
     	'paid_ammount',
     	'remaining_ammount',
