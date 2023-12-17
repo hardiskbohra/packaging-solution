@@ -12,10 +12,10 @@
         }
         .invoice-container {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 20px 20px;
             padding: 10px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* border: 1px solid #ddd; */
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
             background-color: #fff;
 
             /* transform: scale(0.7); */
@@ -72,7 +72,7 @@
 <body style="font-size: 12px; line-height: 9px">
 
 <div class="invoice-container">
-    <div class="shop-details">
+    <div class="shop-details" >
         <img src="/app-assets/images/mascot/logo-without-background.png" alt="Shop Logo"  class="shop-logo">
     </div>
     <div class="invoice-details">
@@ -80,17 +80,16 @@
         <h4>Suiting | Shirting | Show Room</h4>
         <p>177, Nirnay Nagar Sector-4,</p>
         <p>Opp. Vimalnath Bus Stand, Nirnay Nagar, Ahmedabad</p>
-        <p>+91 86906 97978, +91 83203 59212</p>
+        <p>+91 86906 97978, +91 95580 71708</p>
     </div>
     <div style="clear:both;"></div> <!-- Clear the float -->
     <hr>
     {{-- <h2 style="text-align: center">Inovice</h2> --}}
-    <div class="shop-details">
+    <div class="shop-details" style="width: 60%">
         <p><b>Bill No:</b> {{$invoice->invoice_number}}</p>
-        <p><b>Date: </b>{{$invoice->date}}</p>
-        {{-- <p><b>Delivery Date:</b> {{$invoice->delivery_date}}</p> --}}
+        <p><b>Date: </b>{{$invoice->date}}&nbsp;&nbsp;&nbsp;<b>Delivery Date:</b> {{$invoice->delivery_date}}</p>
     </div>
-    <div class="invoice-details">
+    <div class="invoice-details" style="margin-bottom: 5px">
         <p><b>Customer Name: </b>{{Str::title($invoice->customer->name)}}</p>
         <p><b>Phone Number:</b> +91 {{$invoice->customer->phone_number}}</p>
     </div>
@@ -100,10 +99,10 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Item</th>
+                    <th>Particulars</th>
                     <th>Rate</th>
-                    <th>Qty</th>
-                    <th>Cost</th>
+                    <th>Qty/Mtr</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,9 +133,9 @@
                     @endfor
                 @endif
                 <tr>
-                    <td colspan="3" class="">
+                    <td colspan="2" class="">
                     </td>
-                    <td class="text-end px-4 ">
+                    <td colspan="2" class="text-end px-4 ">
                         <p class="mb-2"><strong>Subtotal:</strong></p>
                         <p class="mb-2">Discount:</p>
                         <p class="mb-2">Tax:</p>
@@ -159,11 +158,9 @@
         {{-- <hr> --}}
         {{-- <div class="total-section">
         </div> --}}
-    <h4>Terms & Conditions:</h4>
-    <h6 style="color: rgb(157, 156, 156);font-weight:400;margin-top:-10px; margin-bottom: -5px;">
-        Laundered goods are not eligible for exchange. Additionally, for the exchange of goods, it is imperative to present the original bill within the designated exchange hours, which are from 01:00 PM to 05:00 PM. Please note that once goods are sold, they cannot be returned, and there is no guarantee provided for Cotton items.
-        The jurisdiction for any matters related to this transaction falls under Ahmedabad. (Errors and Omissions Excepted).
-        </ul>
+    <h4 style="margin-bottom:-5px;">Terms & Conditions:</h4>
+    <h6 style="color: rgb(157, 156, 156);font-weight:400;text-align:justify;font-size:10px;line-height:2.5ch">
+        Laundered goods are not eligible for exchange. Additionally, for the exchange of goods, it is imperative to present the original bill within the designated exchange hours, which are from 01:00 PM to 05:00 PM. Please note that once goods are sold, they cannot be returned, and there is no guarantee provided for Cotton items. The jurisdiction for any matters related to this transaction falls under Ahmedabad. (Errors and Omissions Excepted).
     </h6>
 </div>
 
