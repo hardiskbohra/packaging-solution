@@ -13,23 +13,30 @@
         .invoice-container {
             max-width: 800px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #fff;
+
+            /* transform: scale(0.7); */
+            /* transform-origin: top left; */
+            /* transform: scale(0.95);*/
         }
         .shop-details {
             float: left;
-            width: 45%;
+            width: 40%;
         }
         .shop-logo {
-            max-width: 150px;
-            margin-bottom: 10px;
+            height: 130px;
+            width: 130px;
+            /* max-width: 150px; */
+            margin-bottom: 5px;
         }
         .invoice-details {
             float: right;
-            width: 45%;
+            /* width: 45%;      */
             text-align: right;
+            line-height: 0.8;
         }
         hr {
             border: 0;
@@ -62,44 +69,41 @@
         }
     </style>
 </head>
-<body>
+<body style="font-size: 12px; line-height: 9px">
 
 <div class="invoice-container">
     <div class="shop-details">
-<img src="/app-assets/images/mascot/logo2.jpg" alt="Shop Logo"  class="shop-logo">
-
+        <img src="/app-assets/images/mascot/logo-without-background.png" alt="Shop Logo"  class="shop-logo">
     </div>
     <div class="invoice-details">
-        <h3>Raymond Mascot</h3>
-        <p>Office 149, Maruti Nandan Complex</p>
-        <p>KK Nagar, Ghatlodia, Ahmedabad-013</p>
-        <p>+91 (869) 069 7978, +91 (832) 035 9212</p>
-
-
-
+        <h2>Raymond Mascot</h2>
+        <h4>Suiting | Shirting | Show Room</h4>
+        <p>177, Nirnay Nagar Sector-4,</p>
+        <p>Opp. Vimalnath Bus Stand, Nirnay Nagar, Ahmedabad</p>
+        <p>+91 86906 97978, +91 83203 59212</p>
     </div>
     <div style="clear:both;"></div> <!-- Clear the float -->
     <hr>
-    <h2 style="text-align: center">Inovice</h2>
+    {{-- <h2 style="text-align: center">Inovice</h2> --}}
     <div class="shop-details">
-        <p><b>Invoice Number:</b> {{$invoice->invoice_number}}</p>
+        <p><b>Bill No:</b> {{$invoice->invoice_number}}</p>
         <p><b>Date: </b>{{$invoice->date}}</p>
-        <p><b>Delivery Date:</b> {{$invoice->delivery_date}}</p>
+        {{-- <p><b>Delivery Date:</b> {{$invoice->delivery_date}}</p> --}}
     </div>
     <div class="invoice-details">
-        <p><b>Customer Name: </b>{{$invoice->customer->name}}</p>
+        <p><b>Customer Name: </b>{{Str::title($invoice->customer->name)}}</p>
         <p><b>Phone Number:</b> +91 {{$invoice->customer->phone_number}}</p>
     </div>
-    <hr>
+    {{-- <hr> --}}
     <div class="item-list">
         <table>
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>Item</th>
-                    <th>Cost</th>
+                    <th>Rate</th>
                     <th>Qty</th>
-                    <th>Price</th>
+                    <th>Cost</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,7 +113,7 @@
                 @foreach ($invoice->incoiceItems as $item)
                 <tr>
                     <td>{{$count}}</td>
-                    <td>{{$item->type}}</td>
+                    <td>{{Str::title($item->type)}}</td>
                     <td>{{$item->cost}}</td>
                     <td>{{$item->quantity}}</td>
                     <td>₹ {{$item->price}}</td>
@@ -118,6 +122,17 @@
                     $count++;
                 @endphp
                 @endforeach
+                @if ($count < 10)
+                    @for ($i = $count; $i <= 10; $i++)
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endfor
+                @endif
                 <tr>
                     <td colspan="3" class="">
                     </td>
@@ -141,13 +156,14 @@
             </tbody>
         </table>
     </div>
-    <hr>
-    <div class="total-section">
-    </div>
-    <h6 style="color: gray">
-        If you have any further questions or concerns about this issue please mention the following ticket id in subject line, in the subsequent emails.
-        If you have any further questions or concerns about this issue please mention the following ticket id in subject line, in the subsequent emails.
-        If you have any further questions or concerns about this issue please mention the following ticket id in subject line, in the subsequent emails.
+        {{-- <hr> --}}
+        {{-- <div class="total-section">
+        </div> --}}
+    <h4>Terms & Conditions:</h4>
+    <h6 style="color: rgb(157, 156, 156);font-weight:400;margin-top:-10px; margin-bottom: -5px;">
+        Laundered goods are not eligible for exchange. Additionally, for the exchange of goods, it is imperative to present the original bill within the designated exchange hours, which are from 01:00 PM to 05:00 PM. Please note that once goods are sold, they cannot be returned, and there is no guarantee provided for Cotton items.
+        The jurisdiction for any matters related to this transaction falls under Ahmedabad. (Errors and Omissions Excepted).
+        </ul>
     </h6>
 </div>
 
