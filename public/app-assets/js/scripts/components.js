@@ -108,11 +108,11 @@
   }
   // widget chat hide/show on demo chat button click
   $(".chat-demo-button").click(function () {
-    $(".widget-chat-demo").toggleClass("d-block d-none");
+    // $(".widget-chat-demo").toggleClass("d-block d-none");
   });
   // widget chat hide on close button click
   $(".widget-chat-close").click(function () {
-    $(".widget-chat-demo").toggleClass("d-block d-none");
+    // $(".widget-chat-demo").toggleClass("d-block d-none");
   });
   // widget chat autoscroll to bottom of Chat area on click on demo chat button
   $(".chat-demo-button").on("click", function () {

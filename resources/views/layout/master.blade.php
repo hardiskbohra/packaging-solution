@@ -73,7 +73,8 @@
     <!-- demo chat-->
     <div class="widget-chat-demo">
         <!-- widget chat demo footer button start -->
-        <button class="btn btn-primary chat-demo-button glow px-1"><i class="livicon-evo" data-options="name: comments.svg; style: lines; size: 24px; strokeColor: #fff; autoPlay: true; repeat: loop;"></i></button>
+        {{-- href="{{route('invoices.create')}}" --}}
+        <a href="{{route('invoices.create')}}" class="btn btn-primary chat-demo-button glow px-1"><i class="livicon-evo" data-options="name: plus.svg; style: lines; size: 40px; strokeColor: #fff; autoPlay: true; repeat: loop;"></i></a>
         <!-- widget chat demo footer button ends -->
         <!-- widget chat demo start -->
         <div class="widget-chat widget-chat-demo d-none">

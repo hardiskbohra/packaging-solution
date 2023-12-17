@@ -36,6 +36,29 @@ $(document).ready(function () {
     });
     //--------------update delivery status---------------------------
 
+    //------------open add invoice page on click of floating button icon ------------------------
+    $('#chat-demo-button').on('click', function () {
+        // Collect data from the form
+        var formData = $('#addPaymentForm').serialize();
+        console.log(formData);
+        // Make an AJAX call to store payment history
+        $.ajax({
+            url: '/add-payment-history', // Replace with your actual route
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                // Handle the success response (if needed)
+                console.log(response);
+                location.reload();
+            },
+            error: function (error) {
+                // Handle the error (if needed)
+                console.error(error);
+            }
+        });
+    });
+    //------------open add invoice page on click of floating button icon ------------------------
+
 
     //------------add payment ------------------------
     $('#addPaymentBtn').on('click', function () {
@@ -60,6 +83,7 @@ $(document).ready(function () {
         });
     });
     //------------add payment ------------------------
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -105,6 +129,9 @@ $(document).ready(function () {
             nameInput.prop('readonly', false);
         }
     });
+
+
+
 
     //dynamic price change
     $(document).on('input', '.cost-input, .quantity-input', function () {
