@@ -199,12 +199,10 @@ $(document).ready(function () {
         }
 
         var totalPayAmount = totalAmount - discountedAmount;
-        if (totalPayAmount - paidAmount > 0) {
-            $(".remaining_amount_text").text(' ₹ ' +(totalPayAmount - paidAmount).toFixed(2));
-            $("#remaining_amount").val((totalPayAmount - paidAmount).toFixed(2));
-        } else if (totalPayAmount - paidAmount == 0) {
-          $(".remaining_amount_text").text(' ₹ 0');
-          $("#remaining_amount").val(0);
+        var remainingAmount = totalPayAmount - paidAmount;
+        if (remainingAmount >= 0) {
+            $(".remaining_amount_text").text(' ₹ ' + remainingAmount.toFixed(2));
+            $("#remaining_amount").val(remainingAmount.toFixed(2));
         }
 
     });
