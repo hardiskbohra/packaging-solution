@@ -344,7 +344,6 @@
                                             </div>
                                             <div style="text-align: center; margin-top: 10px;">
                                                 <button class="btn btn-primary subtotal-preview-btn" type="submit">Save Invoice</button>
-                                                <button class="btn btn-secondary subtotal-preview-btn" type="submit">Save Invoice</button>
                                             </div>
                                         </div>
                                     </div>
