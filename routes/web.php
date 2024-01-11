@@ -31,9 +31,10 @@ Route::middleware([RoleMiddleware::class])->group(function(){
     Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
+Route::middleware(['auth'])->group(function () {
 
-
-Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+    Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+});
 Route::post('/get-customer-name',  [App\Http\Controllers\InvoiceController::class, 'getCustomerName'])->name('getCustomerName');
 Route::get('/invoice/print', [App\Http\Controllers\InvoiceController::class, 'printInvoice'])->name('invoice.print');
 Route::post('/update-delivered-status',  [App\Http\Controllers\InvoiceController::class, 'updateDeliveredStatus']);

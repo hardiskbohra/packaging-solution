@@ -163,30 +163,73 @@
                                                                             <form action="#" id="addPaymentForm">
                                                                                 <div class="modal-body">
                                                                                     <input type="hidden" name="id" value="{{$invoice->id}}">
-                                                                                    <label>Invoice No.: </label>
+
+
+
+                                                                                    {{-- <label>Invoice No.: </label>
                                                                                     <div class="form-group">
                                                                                         <input type="text" class="form-control" value="{{$invoice->invoice_number}}" readonly>
                                                                                     </div>
                                                                                     <label>Customer: </label>
                                                                                     <div class="form-group">
                                                                                         <input type="text" class="form-control" value="{{$invoice->customer->name}}" readonly>
+                                                                                    </div> --}}
+
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">
+                                                                                            <label>Invoice No.: </label>
+                                                                                            <div class="form-group">
+                                                                                                <input type="text" class="form-control" value="{{$invoice->invoice_number}}" readonly>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <label>Customer: </label>
+                                                                                            <div class="form-group">
+                                                                                                <input type="text" class="form-control" value="{{$invoice->customer->name}}" readonly>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <label>TOtal: </label>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <label>Total: </label>
+                                                                                            <div class="form-group">
+                                                                                                <input type="text" class="form-control" value="{{$invoice->total}}" readonly>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <label>Paid Amount: </label>
+                                                                                            <div class="form-group">
+                                                                                                <input type="text" class="form-control" value="{{$invoice->paid_ammount}}" readonly>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <label>Remaining Amount: </label>
+                                                                                            <div class="form-group">
+                                                                                                <input type="number" name="remaining_amount" placeholder="Remaining Amount" class="form-control" value="{{$invoice->remaining_ammount}}" min="0" max="{{$invoice->remaining_ammount}}" oninput="validity.valid||(value='');" readonly>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+
+
+                                                                                    {{-- <label>TOtal: </label>
                                                                                     <div class="form-group">
                                                                                         <input type="text" class="form-control" value="{{$invoice->total}}" readonly>
                                                                                     </div>
                                                                                     <label>Paid Amount: </label>
                                                                                     <div class="form-group">
                                                                                         <input type="text" class="form-control"  value="{{$invoice->paid_ammount}}" readonly>
-                                                                                    </div>
-                                                                                    <label>Remaining Amount: </label>
-                                                                                    {{-- <div class="form-group">
-                                                                                        <input type="text" name="remaining_amount" placeholder="remaining amount" class="form-control" value="{{$invoice->remaining_ammount}}">
                                                                                     </div> --}}
-
+                                                                                    <label>New Payment: </label>
                                                                                     <div class="form-group">
-                                                                                        <input type="number" name="remaining_amount" placeholder="Remaining Amount" class="form-control" value="{{$invoice->remaining_ammount}}" min="0" max="{{$invoice->remaining_ammount}}" oninput="validity.valid||(value='');">
+                                                                                        <input type="text" name="remaining_amount" placeholder="remaining amount" class="form-control" value="{{$invoice->remaining_ammount}}">
                                                                                     </div>
+
+                                                                                    {{-- <div class="form-group">
+                                                                                        <input type="number" name="remaining_amount" placeholder="Remaining Amount" class="form-control" value="{{$invoice->remaining_ammount}}" min="0" max="{{$invoice->remaining_ammount}}" oninput="validity.valid||(value='');">
+                                                                                    </div> --}}
 
 
                                                                                     <label>Payment Mode: </label>
