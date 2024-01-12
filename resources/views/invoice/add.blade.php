@@ -196,10 +196,15 @@
                                                                             name="item[0][type]" onchange="onItemSelect(this)">
                                                                             <option value="shirt">shirt</option>
                                                                             <option value="pent">pent</option>
-                                                                            <option value="kurta">kurta</option>
-                                                                            <option value="lengha">lengha</option>
                                                                             <option value="shirting">shirting</option>
                                                                             <option value="suiting">suiting</option>
+                                                                            <option value="kurta">kurta</option>
+                                                                            <option value="lengha">lengha</option>
+                                                                            <option value="lengha">blezer</option>
+                                                                            <option value="lengha">jodhpuri</option>
+                                                                            <option value="lengha">indo-western</option>
+                                                                            <option value="lengha">koti</option>
+                                                                            <option value="lengha">pathani</option>
                                                                             <option value="stitching">stitching</option>
                                                                             </option>
                                                                         </select>
