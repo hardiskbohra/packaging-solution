@@ -202,6 +202,7 @@
                                                                             <option value="lengha">lengha</option>
                                                                             <option value="lengha">blezer</option>
                                                                             <option value="lengha">jodhpuri</option>
+                                                                            <option value="lengha">safari</option>
                                                                             <option value="lengha">indo-western</option>
                                                                             <option value="lengha">koti</option>
                                                                             <option value="lengha">pathani</option>
