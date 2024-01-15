@@ -42,7 +42,7 @@
 
 
     <!-- BEGIN: Content-->
-    <form action="{{ route('invoices.store') }}" method="POST">
+    <form action="{{ route('invoices.store') }}" id="invoiceForm" method="POST" onsubmit="return validateForm(event)" onkeydown="return handleEnterKey(event)">
         @csrf
         <div class="app-content content">
             <div class="content-overlay"></div>
@@ -149,11 +149,13 @@
                                                     <h6 class="invoice-to">Bill To</h6>
                                                     <fieldset class="invoice-address form-group">
                                                         <input type="number" name="ph_number" class="form-control"
-                                                            placeholder="Phone Number">
+                                                            placeholder="Phone Number" oninput="validatePhoneNumber()">
+                                                            <span id="phoneError" style="color: red;"></span>
                                                     </fieldset>
                                                     <fieldset class="invoice-address form-group">
                                                         <input type="text" name="customer_name" class="form-control"
                                                             placeholder="Customer Name">
+                                                            <span id="nameError" style="color: red;"></span>
                                                     </fieldset>
 
                                                    {{-- <fieldset class="invoice-address form-group">
@@ -349,7 +351,7 @@
                                                 </div>
                                             </div>
                                             <div style="text-align: center; margin-top: 10px;">
-                                                <button class="btn btn-primary subtotal-preview-btn" type="submit">Save Invoice</button>
+                                                <button class="btn btn-primary subtotal-preview-btn" type="submit" >Save Invoice</button>
                                             </div>
                                         </div>
                                     </div>
@@ -490,4 +492,87 @@
          }
     }
     </script>
+    <script>
+        function validatePhoneNumber() {
+            var phoneNumber = document.forms["invoiceForm"]["ph_number"].value;
+            var phoneError = document.getElementById("phoneError");
+
+            // Remove non-digit characters
+            phoneNumber = phoneNumber.replace(/\D/g, '');
+
+            // Check if the phone number is exactly 10 digits
+            if (phoneNumber.length !== 10) {
+                phoneError.innerHTML = "Phone Number should have exactly 10 digits";
+                /* scrollToElement(phoneError); */
+
+            } else {
+                phoneError.innerHTML = "";
+            }
+        }
+
+        function validateForm(event) {
+
+        var phoneNumber = document.forms["invoiceForm"]["ph_number"].value;
+        var customerName = document.forms["invoiceForm"]["customer_name"].value;
+        var phoneError = document.getElementById("phoneError");
+        var nameError = document.getElementById("nameError");
+
+        // Check if the phone number is empty
+        if (phoneNumber.trim() === "") {
+            phoneError.innerHTML = "Phone Number cannot be empty";
+            scrollToElement(phoneError);
+            return false;
+        }
+
+        // Check if the phone number contains exactly 10 digits
+        var phonePattern = /^\d{10}$/;
+        if (!phonePattern.test(phoneNumber)) {
+            phoneError.innerHTML = "Phone Number should have exactly 10 digits";
+            scrollToElement(phoneError);
+            return false;
+        }
+
+        // If phone number validation passes, reset the error message
+        phoneError.innerHTML = "";
+
+        // Check if the customer name is empty
+        if (customerName.trim() === "") {
+            nameError.innerHTML = "Customer Name cannot be empty";
+            scrollToElement(nameError);
+            return false;
+        }
+
+        // Check if the customer name contains only letters and numbers
+        /* var namePattern = /^[a-zA-Z0-9]+$/;
+        if (!namePattern.test(customerName)) {
+            nameError.innerHTML = "Customer Name can only contain letters and numbers";
+            scrollToElement(nameError);
+            return false;
+        } */
+
+        // If all validations pass, reset the error message
+        nameError.innerHTML = "";
+
+        // Additional validation logic can be added here if needed
+
+        // If everything is valid, submit the form
+        document.getElementById("invoiceForm").submit();
+    }
+
+    function handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        }
+
+        function scrollToElement(element) {
+            // Scroll the page to the specified element
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+
+        </script>
 @endsection
