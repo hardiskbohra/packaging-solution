@@ -18,6 +18,11 @@ $(document).ready(function () {
         var checkbox = $(this);
         var deliveryStatusTd = checkbox.closest('.delivery-status');
         var invoiceId = deliveryStatusTd.data('invoice-id');
+        var isDelivered = checkbox.closest('.delivery-status').data('delivered');
+        var delivery_date = checkbox.closest('.delivery-status').data('delievery_date');
+        var html = isDelivered != "yes" ? '<button class="badge badge-success badge-pill badge-round delivery-badge" style="border: none">Delivered</button>' :
+        '<button class="badge badge-light-green badge-pill badge-round delivery-badge" style="border: none"">' + delivery_date + '</button>';
+
         // Simulate an Ajax call to update the delivered status
         $.ajax({
             url: '/update-delivered-status',  // Replace with your actual endpoint
@@ -27,7 +32,9 @@ $(document).ready(function () {
             },
             success: function(response) {
                 // Update the badge based on the new delivered status
-                    deliveryStatusTd.html('<span class="badge badge-success badge-pill badge-round delivery-badge">Delivered</span>');
+                    deliveryStatusTd.html(html);
+                    deliveryStatusTd.data('delivered',isDelivered == "yes" ? 'no' : 'yes')
+
             },
             error: function(error) {
                 console.error('Error updating delivery status:', error);

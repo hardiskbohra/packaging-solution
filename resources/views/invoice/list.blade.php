@@ -135,9 +135,9 @@
                                                         <td>{{$invoice->customer->name}}</td>
                                                         <td>{{$invoice->customer->phone_number}}</td>
                                                         <td>{{ \Carbon\Carbon::parse($invoice->date)->format('d M')}}</td>
-                                                        <td class="delivery-status" data-invoice-id="{{ $invoice->id }}" data-delivered="{{ $invoice->delivered_status }}">
+                                                        <td class="delivery-status" data-invoice-id="{{ $invoice->id }}" data-delivered="{{ $invoice->delivered_status }}" data-delievery_date="{{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}">
                                                             @if ($invoice->delivered_status == 'yes')
-                                                                <span class="badge badge-success badge-pill badge-round delivery-badge">Delivered</span>
+                                                                <button class="badge badge-success badge-pill badge-round delivery-badge" style="border: none">Delivered</button>
                                                             @else
                                                                 <button class="badge badge-light-green badge-pill badge-round delivery-badge" style="border: none"">{{ \Carbon\Carbon::parse($invoice->delivery_date)->format('d M')}}</i></button>
                                                             @endif
