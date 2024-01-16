@@ -43,7 +43,7 @@ class InvoiceController extends Controller
             }
         })
         ->orderBy('created_at','DESC')
-        ->paginate(10);
+        ->paginate(50);
         Paginator::useBootstrap();
         return view('invoice.list', compact('invoices'));
 
