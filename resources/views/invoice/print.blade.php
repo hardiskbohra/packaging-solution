@@ -164,12 +164,12 @@
     </h6>
 </div>
 
- {{-- <script>
+ <script>
         // Automatically trigger print when the page loads
         window.onload = function () {
             window.print();
         };
-    </script> --}}
+    </script>
 </body>
 
 

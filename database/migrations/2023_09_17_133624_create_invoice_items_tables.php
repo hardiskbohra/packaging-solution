@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('invoice_id')->nullable()->index();
             $table->string('type')->nullable();
             $table->double('cost',16,2)->nullable();
-            $table->integer('quantity')->nullable();
+            $table->double('quantity',16,2)->nullable();
             $table->double('price',16,2)->nullable();
             $table->timestamps();
         });

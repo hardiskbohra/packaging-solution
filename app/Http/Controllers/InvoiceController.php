@@ -158,13 +158,19 @@ class InvoiceController extends Controller
     {
 
         $invoice = Invoice::with(['customer','incoiceItems'])->where('id',$request->id)->first();
-        return view('invoice.preview',compact('invoice'));
+        return view('invoice.print',compact('invoice'));
     }
 
     public function updateDeliveredStatus(Request $request)
     {
         $invoice = Invoice::find($request->invoice_id);
-        $invoice->delivered_status = 'yes';
+
+        if ($invoice->delivered_status == 'yes') {
+            $invoice->delivered_status = 'no';
+        } else {
+            $invoice->delivered_status = 'yes';
+        }
+
         $invoice->save();
 
         return response()->json(['message' => 'Delivered status updated successfully']);
