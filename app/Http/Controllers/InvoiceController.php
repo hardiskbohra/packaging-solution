@@ -133,24 +133,59 @@ class InvoiceController extends Controller
 
     public function addPaymentHistory(Request $request)
     {
-        \App\Models\PaymentHistory::create(
+        if(!empty($request->full_payment))
+        {
+            \App\Models\PaymentHistory::create(
                 [
                     'invoice_id' => $request->id,
                     'date' => Carbon::now(),
                     'paid_amount' => $request->remaining_amount,
                     'payment_mode' => $request->payment_mode,
+                    'full_payment' => "yes",
                 ]
             );
 
-        $invoice = \App\Models\Invoice::find($request->id);
-        if($invoice)
-        {
+            $invoice = \App\Models\Invoice::find($request->id);
+            if($invoice)
+            {
 
-            $invoice->paid_ammount = $invoice->paid_ammount + $request->remaining_amount;
-            $invoice->remaining_ammount = $invoice->remaining_ammount - $request->remaining_amount;
-            $invoice->payment_status = ($invoice->remaining_ammount <= 0 ? 'paid' : 'unpaid');
-            $invoice->save();
+                $invoice->paid_ammount = $invoice->paid_ammount + $request->remaining_amount;
+
+                $on_going_discount = $invoice->remaining_ammount - $request->remaining_amount;
+
+                $invoice->discount_ammount = $invoice->discount_ammount + $on_going_discount;
+                $invoice->total_discount = $invoice->total_discount + $on_going_discount;
+                $invoice->total = $invoice->total - $on_going_discount;
+
+                $invoice->remaining_ammount = 00.00;  //need to change the logic
+                $invoice->payment_status = ($invoice->remaining_ammount <= 0 ? 'paid' : 'unpaid');
+                $invoice->save();
+            }
+
         }
+        else
+        {
+            \App\Models\PaymentHistory::create(
+                [
+                    'invoice_id' => $request->id,
+                    'date' => Carbon::now(),
+                    'paid_amount' => $request->remaining_amount,
+                    'payment_mode' => $request->payment_mode,
+
+                ]
+            );
+
+            $invoice = \App\Models\Invoice::find($request->id);
+            if($invoice)
+            {
+
+                $invoice->paid_ammount = $invoice->paid_ammount + $request->remaining_amount;
+                $invoice->remaining_ammount = $invoice->remaining_ammount - $request->remaining_amount;
+                $invoice->payment_status = ($invoice->remaining_ammount <= 0 ? 'paid' : 'unpaid');
+                $invoice->save();
+            }
+        }
+
     }
 
 
@@ -174,5 +209,13 @@ class InvoiceController extends Controller
         $invoice->save();
 
         return response()->json(['message' => 'Delivered status updated successfully']);
+    }
+
+    public function destroy(Invoice $invoice)
+    {
+        $invoice->delete();
+
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
+
     }
 }
