@@ -242,14 +242,14 @@
                                                                                     </div> --}}
 
 
-                                                                                    <label>Payment Mode: </label>
+<!--                                                                                     <label>Payment Mode: </label>
                                                                                     <div class="form-group">
                                                                                         <select class="form-control" id="Invoice-payment-mode" name="payment_mode">
                                                                                             <option value="cash">Cash</option>
                                                                                             <option value="card">Card</option>
                                                                                             <option value="upi">UPI</option>
                                                                                         </select>
-                                                                                    </div>
+                                                                                    </div> -->
 
                                                                                     <div class="row">
                                                                                         <div class="col-md-9">
