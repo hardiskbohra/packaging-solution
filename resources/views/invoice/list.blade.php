@@ -274,8 +274,8 @@
 
                                                                                     <div class="row">
                                                                                         <div class="widget-todo-title-area d-flex align-items-center">
-                                                                                            <div class="checkbox form-control checkbox-primary checkbox-glow">
-                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%; border:0px;">
+                                                                                            <div class="checkbox checkbox-shadow">
+                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" class="checkbox__input">
                                                                                                 <label for="checkboxGlow1"></label>
                                                                                             </div>
                                                                                             <span class="widget-todo-title ml-50">Adjust remaining amount as discount</span>
