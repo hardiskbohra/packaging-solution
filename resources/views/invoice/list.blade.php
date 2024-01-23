@@ -263,10 +263,10 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-md-3">
-                                                                                            <label>Full Payment </label>
+                                                                                            <label>Adjust Difference </label>
 
                                                                                             <div class="checkbox form-control checkbox-primary checkbox-glow">
-                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%" checked>
+                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%">
                                                                                                 <label for="checkboxGlow1"></label>
                                                                                             </div>
                                                                                         </div>

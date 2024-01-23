@@ -15,7 +15,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation"
             data-icon-style="lines">
-            <li class=" nav-item"><a href="/html/ltr/vertical-menu-template/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">5</span></a>
+<!--             <li class=" nav-item"><a href="/html/ltr/vertical-menu-template/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">5</span></a>
                 <ul class="menu-content">
                     <li><a href="{{route('dashboard')}}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="eCommerce">EEeCommerce</span></a>
                     </li>
@@ -91,10 +91,10 @@
                     </ul>
                 </li>
                 </li>
-            @endif --}}
+            @endif --}} -->
             <li class="navigation-header"><span>Store Management</span>
             </li>
-
+            <li class="nav-item"><a href="{{route('dashboard')}}"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="User">Dashboard</span></a></li>
             <li class="nav-item"><a href="{{route('users.index')}}"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="User">Users</span></a></li>
             <li class="nav-item"><a href="{{route('invoices.index')}}"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">Invoices</span></a>
 <!--                 <ul class="menu-content">
