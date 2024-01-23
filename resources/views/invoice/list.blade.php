@@ -266,7 +266,7 @@
                                                                                             <label>Full Payment </label>
 
                                                                                             <div class="checkbox form-control checkbox-primary checkbox-glow">
-                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%" checked>
+                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%; border:0px;">
                                                                                                 <label for="checkboxGlow1"></label>
                                                                                             </div>
                                                                                         </div>
