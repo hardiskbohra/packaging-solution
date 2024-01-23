@@ -274,6 +274,7 @@
 
                                                                                     <div class="row">
                                                                                         <div class="widget-todo-title-area d-flex align-items-center">
+                                                                                            <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
                                                                                             <div class="checkbox checkbox-shadow">
                                                                                                 <input type="checkbox" name="full_payment" id="checkboxGlow1" class="checkbox__input">
                                                                                                 <label for="checkboxGlow1"></label>
