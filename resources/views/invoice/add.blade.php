@@ -196,19 +196,19 @@
                                                                     <div class="col-12 col-md-4 form-group">
                                                                         <select class="form-control invoice-item-select"
                                                                             name="item[0][type]" onchange="onItemSelect(this)">
-                                                                            <option value="shirt">shirt</option>
-                                                                            <option value="pent">pent</option>
-                                                                            <option value="shirting">shirting</option>
-                                                                            <option value="suiting">suiting</option>
-                                                                            <option value="kurta">kurta</option>
-                                                                            <option value="lengha">lengha</option>
-                                                                            <option value="lengha">blezer</option>
-                                                                            <option value="lengha">jodhpuri</option>
-                                                                            <option value="lengha">safari</option>
-                                                                            <option value="lengha">indo-western</option>
-                                                                            <option value="lengha">koti</option>
-                                                                            <option value="lengha">pathani</option>
-                                                                            <option value="stitching">stitching</option>
+                                                                            <option value="shirt">Shirt</option>
+                                                                            <option value="pent">Pent</option>
+                                                                            <option value="shirting">Shirting</option>
+                                                                            <option value="suiting">Suiting</option>
+                                                                            <option value="kurta">Kurta</option>
+                                                                            <option value="lengha">Lengha</option>
+                                                                            <option value="blezer">Blezer</option>
+                                                                            <option value="jodhpuri">Jodhpuri</option>
+                                                                            <option value="safari">Safari</option>
+                                                                            <option value="indo-western">Indo-western</option>
+                                                                            <option value="koti">Koti</option>
+                                                                            <option value="pathani">Pathani</option>
+                                                                            <option value="stitching">Stitching</option>
                                                                             </option>
                                                                         </select>
                                                                     </div>

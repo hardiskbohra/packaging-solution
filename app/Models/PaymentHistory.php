@@ -14,5 +14,6 @@ class PaymentHistory extends Model
     	'date',
     	'paid_amount',
     	'payment_mode',
+        'full_payment',
     ];
 }
