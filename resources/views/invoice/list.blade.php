@@ -273,22 +273,14 @@
                                                                                     </div> -->
 
                                                                                     <div class="row">
-                                                                                        <div class="widget-todo-title-area d-flex align-items-center">
-                                                                                            <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
-                                                                                            <div class="checkbox checkbox-shadow">
-                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow2" class="checkbox__input">
-                                                                                                <label for="checkboxGlow2"></label>
-                                                                                            </div>
-                                                                                            <span class="widget-todo-title ml-50">Adjust remaining amount as discount</span>
-                                                                                        </div>
 
                                                                                         <div class="widget-todo-title-area d-flex align-items-center">
                                                                                             <i class='bx bx-grid-vertical mr-25 font-medium-4 cursor-move'></i>
-                                                                                            <div class="checkbox checkbox-shadow">
+                                                                                            <div class="checkbox form-control checkbox-primary checkbox-glow">
                                                                                                 <input type="checkbox" class="checkbox__input" id="checkboxGlow1">
                                                                                                 <label for="checkboxGlow1"></label>
                                                                                             </div>
-                                                                                            <span class="widget-todo-title ml-50">Add SCSS and JS files if required</span>
+                                                                                            <span class="widget-todo-title ml-50">Adjust remaining amount as discount</span>
                                                                                         </div>
                                                                                     </div>
 
