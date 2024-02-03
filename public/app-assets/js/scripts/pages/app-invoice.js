@@ -142,7 +142,6 @@ $(document).ready(function () {
 
     //dynamic price change
     $(document).on('input', '.cost-input, .quantity-input', function () {
-        // alert("sdfsdfs")
         var index = $(this).attr('name').match(/\d+/)[0];
 
         // Get the corresponding cost and quantity values
@@ -214,13 +213,29 @@ $(document).ready(function () {
 
     });
 
+    // $(document).on('click', '.close_button', function () {
+    //     console.log($(this).closest(".raw_amount").val());
+    // });
+
+
     $(document).on('click', '.close_button', function () {
-        console.log($(this).closest(".raw_amount").val());
-    });
 
+        $(this).closest('[data-repeater-item]').remove()
+        var total = 0;
+        $('input[name^="item["][name$="[price]"]').each(function() {
+            var price = parseFloat($(this).val()) || 0;
+            total += price;
+        });
 
-$('.close_button').click(function () {
-    $('cost-input').trigger('input');
+        // Update the total label
+        $('.subtotal').text('₹ ' +total.toFixed(2));
+        $('#subtotal').val(total.toFixed(2));
+
+        $('.copst-inut').trigger('change');
+        $('.raw_amount').trigger('change');
+
+        $('.quantity-input').trigger('input');
+
 });
 
 

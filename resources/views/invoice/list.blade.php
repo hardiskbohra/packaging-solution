@@ -296,6 +296,7 @@
                                                         @endif
                                                         <td style="display: flex; align-items: center;">
                                                             <a href="{{ route('invoice.print',['id' => $invoice->id]) }}" target="_blank"><i class="bx bx-printer" style="font-size: 1.9rem"></i></a>
+                                                            <a href="{{ route('invoices.show',[$invoice->id]) }}" target="_blank"><i class="bx bx-edit" style="font-size: 1.9rem"></i></a>
                                                             <form action="{{ route('invoices.destroy', $invoice->id) }}" method="post"
                                                                 onsubmit="return confirm('Are you sure you want to delete this invoice?');">
                                                               @csrf

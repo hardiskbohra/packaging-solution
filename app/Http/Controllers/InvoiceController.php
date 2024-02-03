@@ -95,6 +95,18 @@ class InvoiceController extends Controller
         return redirect()->route('invoices.index');
     }
 
+    public function show(Invoice $invoice)
+    {
+        $invoice = Invoice::with(['customer','incoiceItems'])->where('id',$invoice->id)->first();
+        return view('invoice.edit',compact('invoice'));
+
+    }
+
+    public function update(Request $request, Invoice $invoice)
+    {
+        dd($request->all());
+    }
+
     public function generateInvoiceNumber()
     {
         $currentYear = date('Y');
