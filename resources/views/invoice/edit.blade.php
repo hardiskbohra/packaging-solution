@@ -186,6 +186,8 @@
                                                                                 <option value="indo-western" {{$item->type == 'indo-western' ? 'selected' : ''}}>Indo-western</option>
                                                                                 <option value="koti" {{$item->type == 'koti' ? 'selected' : ''}}>Koti</option>
                                                                                 <option value="pathani" {{$item->type == 'pathani' ? 'selected' : ''}}>Pathani</option>
+                                                                                <option value="3 peice (shoot, pent and shirt)" {{$item->type == '3 peice (shoot, pent and shirt)' ? 'selected' : ''}}>3 peice (shoot, pent and shirt)</option>
+                                                                                <option value="3 peice (kurta, paijama and koti)" {{$item->type == '3 peice (kurta, paijama and koti)' ? 'selected' : ''}}>3 peice (kurta, paijama and koti)</option>
                                                                                 <option value="stitching" {{$item->type == 'stitching' ? 'selected' : ''}}>Stitching</option>
                                                                                 </option>
                                                                             </select>
