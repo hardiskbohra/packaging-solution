@@ -92,7 +92,7 @@
                                                         <dd class="col-sm-6 d-flex justify-content-md-end">
                                                             <div class="w-px-150">
                                                                 <input type="text" class="form-control"
-                                                                    placeholder="3905" value="{{$invoice->invoice_number}}" name="invoice_no" id="invoiceId">
+                                                                    placeholder="3905" disabled value="{{$invoice->invoice_number}}" name="invoice_no" id="invoiceId">
                                                             </div>
                                                         </dd>
                                                         <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
@@ -100,7 +100,7 @@
                                                         </dt>
                                                         <dd class="col-sm-6 d-flex justify-content-md-end">
                                                             <div class="w-px-150 d-flex">
-                                                                <input type="text" value="{{$invoice->date}}"
+                                                                <input type="text" value="{{\Carbon\Carbon::createFromFormat('Y-m-d', $invoice->date)->format('j F, Y')}}"
                                                                     class="form-control pickadate"
                                                                     placeholder="YYYY-MM-DD"  id="date" name="date">
 
@@ -111,7 +111,7 @@
                                                         </dt>
                                                         <dd class="col-sm-6 d-flex justify-content-md-end">
                                                             <div class="w-px-150 d-flex">
-                                                                <input type="text" value="{{$invoice->delivery_date}}"
+                                                                <input type="text" value="{{\Carbon\Carbon::createFromFormat('Y-m-d', $invoice->delivery_date)->format('j F, Y')}}"
                                                                 class="form-control pickadate"
                                                                 placeholder="YYYY-MM-DD" id="delivery_date" name="delivery_date">
 
