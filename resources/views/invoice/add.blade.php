@@ -149,7 +149,7 @@
                                                     <h6 class="invoice-to">Bill To</h6>
                                                     <fieldset class="invoice-address form-group">
                                                         <input type="number" name="ph_number" class="form-control"
-                                                            placeholder="Phone Number" oninput="validatePhoneNumber()">
+                                                            placeholder="Phone Number">
                                                             <span id="phoneError" style="color: red;"></span>
                                                     </fieldset>
                                                     <fieldset class="invoice-address form-group">
@@ -527,12 +527,12 @@
         }
 
         // Check if the phone number contains exactly 10 digits
-        var phonePattern = /^\d{10}$/;
+        /* var phonePattern = /^\d{10}$/;
         if (!phonePattern.test(phoneNumber)) {
             phoneError.innerHTML = "Phone Number should have exactly 10 digits";
             scrollToElement(phoneError);
             return false;
-        }
+        } */
 
         // If phone number validation passes, reset the error message
         phoneError.innerHTML = "";

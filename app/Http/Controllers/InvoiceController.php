@@ -113,6 +113,12 @@ class InvoiceController extends Controller
                     ]
                 );
         }
+        else
+        {
+            $customer->update([
+                'name' => $request->customer_name,
+            ]);
+        }
         $invoice->update(
             [
                 // 'invoice_number' => $request->invoice_no,
@@ -170,7 +176,7 @@ class InvoiceController extends Controller
         if ($customer) {
             return response()->json(['customer_name' => $customer->name]);
         } else {
-            return response()->json(['customer_name' => 'Customer not found'], 404);
+            return response()->json(['customer_name' => null]);
         }
     }
 

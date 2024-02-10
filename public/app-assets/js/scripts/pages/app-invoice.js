@@ -108,7 +108,7 @@ $(document).ready(function () {
         var phoneNumber = $(this).val();
 
         // Check if the phone number has 10 digits
-        if (phoneNumber.length === 10) {
+        if (phoneNumber.length >= 10 && phoneNumber.length <= 13 ) {
             // Make an AJAX call to get the customer name
             $.ajax({
                 url: '/get-customer-name',
