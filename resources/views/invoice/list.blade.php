@@ -265,8 +265,8 @@
                                                                                         <div class="col-md-3">
                                                                                             <label>Adjust Difference </label>
 
-                                                                                            <div class="checkbox form-control checkbox-primary checkbox-glow">
-                                                                                                <input type="checkbox" name="full_payment" id="checkboxGlow1" style="padding-left: 10%">
+                                                                                            <div>
+                                                                                                <input type="checkbox" name="full_payment" style="padding-left: 10%; height:22px;width:23px">
                                                                                                 <label for="checkboxGlow1"></label>
                                                                                             </div>
                                                                                         </div>
@@ -296,6 +296,7 @@
                                                         @endif
                                                         <td style="display: flex; align-items: center;">
                                                             <a href="{{ route('invoice.print',['id' => $invoice->id]) }}" target="_blank"><i class="bx bx-printer" style="font-size: 1.9rem"></i></a>
+                                                            <a href="{{ route('invoices.show',[$invoice->id]) }}" target="_blank"><i class="bx bx-edit" style="font-size: 1.9rem"></i></a>
                                                             <form action="{{ route('invoices.destroy', $invoice->id) }}" method="post"
                                                                 onsubmit="return confirm('Are you sure you want to delete this invoice?');">
                                                               @csrf

@@ -58,7 +58,6 @@ class InvoiceController extends Controller
 
     public function store(Request $request)
     {
-        // // dd($request->all());
         $customer = Customer::where('phone_number',$request->ph_number)->first();
         if(!$customer)
         {
@@ -88,6 +87,56 @@ class InvoiceController extends Controller
             ]
         );
 
+        foreach ($request->item as $item) {
+            InvoiceItem::create($item+['invoice_id' => $invoice->id]);
+        }
+
+        return redirect()->route('invoices.index');
+    }
+
+    public function show(Invoice $invoice)
+    {
+        $invoice = Invoice::with(['customer','incoiceItems'])->where('id',$invoice->id)->first();
+        return view('invoice.edit',compact('invoice'));
+
+    }
+
+    public function update(Request $request, Invoice $invoice)
+    {
+        $customer = Customer::where('phone_number',$request->ph_number)->first();
+        if(!$customer)
+        {
+            $customer = Customer::create(
+                [
+                    'name' => $request->customer_name,
+                    'phone_number' => $request->ph_number
+                    ]
+                );
+        }
+        else
+        {
+            $customer->update([
+                'name' => $request->customer_name,
+            ]);
+        }
+        $invoice->update(
+            [
+                // 'invoice_number' => $request->invoice_no,
+                'customer_id' => $customer->id,
+                'date' =>  Carbon::createFromFormat('j F, Y', $request->date)->format('Y-m-d'),
+                'delivery_date' =>  Carbon::createFromFormat('j F, Y', $request->delivery_date)->format('Y-m-d'),
+                'sub_total' => $request->sub_total,
+                'discount_percentange' => $request->discount_percentage ?? 0,
+                'discount_ammount' => $request->discount_amount ?? 0,
+                'total_discount' => $request->total_discount,
+                'total' => $request->total,
+                'paid_ammount' => $request->paid_amount ?? 0,
+                'remaining_ammount' => $request->remaining_amount,
+                'payment_status' => $request->remaining_amount <= 0 ? "paid" : "unpaid",
+            ]
+        );
+
+        InvoiceItem::where('invoice_id',$invoice->id)->delete();
         foreach ($request->item as $item) {
             InvoiceItem::create($item+['invoice_id' => $invoice->id]);
         }
@@ -127,7 +176,7 @@ class InvoiceController extends Controller
         if ($customer) {
             return response()->json(['customer_name' => $customer->name]);
         } else {
-            return response()->json(['customer_name' => 'Customer not found'], 404);
+            return response()->json(['customer_name' => null]);
         }
     }
 
