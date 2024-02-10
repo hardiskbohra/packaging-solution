@@ -208,7 +208,7 @@
                                                                             <option value="indo-western">Indo-western</option>
                                                                             <option value="koti">Koti</option>
                                                                             <option value="pathani">Pathani</option>
-                                                                            <option value="3 pcs (shuit, pent and shirt)">3 Pcs (Shuit, Pent and Shirt)</option>
+                                                                            <option value="3 pcs (suit, pent and shirt)">3 Pcs (Suit, Pent and Shirt)</option>
                                                                             <option value="3 pcs (kurta, paijama and koti)">3 Pcs (Kurta, Paijama and Koti)</option>
                                                                             <option value="stitching">Stitching</option>
                                                                             </option>
