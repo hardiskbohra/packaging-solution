@@ -29,6 +29,16 @@
     background-color: #f0f8ff; /* Change the background color to a slightly different shade on hover */
 }
 
+.delete-button {
+    background: none;
+
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    color: #1b86e4 /* Remove the default focus outline */
+}
+
     </style>
 @endsection
 
@@ -232,13 +242,34 @@
                                                                                     </div> --}}
 
 
-                                                                                    <label>Payment Mode: </label>
+<!--                                                                                     <label>Payment Mode: </label>
                                                                                     <div class="form-group">
                                                                                         <select class="form-control" id="Invoice-payment-mode" name="payment_mode">
                                                                                             <option value="cash">Cash</option>
                                                                                             <option value="card">Card</option>
                                                                                             <option value="upi">UPI</option>
                                                                                         </select>
+                                                                                    </div> -->
+
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-9">
+                                                                                            <label>Payment Mode: </label>
+                                                                                            <div class="form-group">
+                                                                                                <select class="form-control" id="Invoice-payment-mode" name="payment_mode">
+                                                                                                    <option value="cash">Cash</option>
+                                                                                                    <option value="card">Card</option>
+                                                                                                    <option value="upi">UPI</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <label>Adjust Difference </label>
+
+                                                                                            <div>
+                                                                                                <input type="checkbox" name="full_payment" style="padding-left: 10%; height:22px;width:23px">
+                                                                                                <label for="checkboxGlow1"></label>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
 
                                                                                 </div>
@@ -263,15 +294,18 @@
                                                             <button class="badge badge-success" style="border: none; cursor:text" desabled>paid</i></button>
                                                         </td>
                                                         @endif
-                                                        <td>
+                                                        <td style="display: flex; align-items: center;">
                                                             <a href="{{ route('invoice.print',['id' => $invoice->id]) }}" target="_blank"><i class="bx bx-printer" style="font-size: 1.9rem"></i></a>
+                                                            <a href="{{ route('invoices.show',[$invoice->id]) }}" target="_blank"><i class="bx bx-edit" style="font-size: 1.9rem"></i></a>
+                                                            <form action="{{ route('invoices.destroy', $invoice->id) }}" method="post"
+                                                                onsubmit="return confirm('Are you sure you want to delete this invoice?');">
+                                                              @csrf
+                                                              @method('DELETE')
 
-
-                                                            {{-- <form method="POST" action="{{route('invoices.destroy',$invoice->id)}}"> --}}
-                                                                {{-- @csrf --}}
-                                                                {{-- @method('DELETE') --}}
-                                                                {{-- <button type="submit" class="badge badge-light-danger" style="border: none">delete</i></button> --}}
-                                                            {{-- </form> --}}
+                                                              <button type="submit" class="delete-button">
+                                                                  <i class="bx bx-trash" style="font-size: 1.9rem; vertical-align: middle;"></i>
+                                                              </button>
+                                                            </form>
                                                         </td>
 
                                                     </tr>

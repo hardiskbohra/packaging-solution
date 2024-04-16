@@ -149,7 +149,7 @@
                                                     <h6 class="invoice-to">Bill To</h6>
                                                     <fieldset class="invoice-address form-group">
                                                         <input type="number" name="ph_number" class="form-control"
-                                                            placeholder="Phone Number" oninput="validatePhoneNumber()">
+                                                            placeholder="Phone Number">
                                                             <span id="phoneError" style="color: red;"></span>
                                                     </fieldset>
                                                     <fieldset class="invoice-address form-group">
@@ -208,6 +208,8 @@
                                                                             <option value="indo-western">Indo-western</option>
                                                                             <option value="koti">Koti</option>
                                                                             <option value="pathani">Pathani</option>
+                                                                            <option value="3 pcs (suit, pent and shirt)">3 Pcs (Suit, Pent and Shirt)</option>
+                                                                            <option value="3 pcs (kurta, paijama and koti)">3 Pcs (Kurta, Paijama and Koti)</option>
                                                                             <option value="stitching">Stitching</option>
                                                                             </option>
                                                                         </select>
@@ -525,12 +527,12 @@
         }
 
         // Check if the phone number contains exactly 10 digits
-        var phonePattern = /^\d{10}$/;
+        /* var phonePattern = /^\d{10}$/;
         if (!phonePattern.test(phoneNumber)) {
             phoneError.innerHTML = "Phone Number should have exactly 10 digits";
             scrollToElement(phoneError);
             return false;
-        }
+        } */
 
         // If phone number validation passes, reset the error message
         phoneError.innerHTML = "";

@@ -108,7 +108,7 @@ $(document).ready(function () {
         var phoneNumber = $(this).val();
 
         // Check if the phone number has 10 digits
-        if (phoneNumber.length === 10) {
+        if (phoneNumber.length >= 10 && phoneNumber.length <= 13 ) {
             // Make an AJAX call to get the customer name
             $.ajax({
                 url: '/get-customer-name',
@@ -142,7 +142,6 @@ $(document).ready(function () {
 
     //dynamic price change
     $(document).on('input', '.cost-input, .quantity-input', function () {
-        // alert("sdfsdfs")
         var index = $(this).attr('name').match(/\d+/)[0];
 
         // Get the corresponding cost and quantity values
@@ -214,13 +213,29 @@ $(document).ready(function () {
 
     });
 
+    // $(document).on('click', '.close_button', function () {
+    //     console.log($(this).closest(".raw_amount").val());
+    // });
+
+
     $(document).on('click', '.close_button', function () {
-        console.log($(this).closest(".raw_amount").val());
-    });
 
+        $(this).closest('[data-repeater-item]').remove()
+        var total = 0;
+        $('input[name^="item["][name$="[price]"]').each(function() {
+            var price = parseFloat($(this).val()) || 0;
+            total += price;
+        });
 
-$('.close_button').click(function () {
-    $('cost-input').trigger('input');
+        // Update the total label
+        $('.subtotal').text('₹ ' +total.toFixed(2));
+        $('#subtotal').val(total.toFixed(2));
+
+        $('.copst-inut').trigger('change');
+        $('.raw_amount').trigger('change');
+
+        $('.quantity-input').trigger('input');
+
 });
 
 
@@ -229,7 +244,7 @@ $('.close_button').click(function () {
   // init date picker
   if ($(".pickadate").length) {
     $(".pickadate").pickadate({
-      format: "mm/dd/yyyy"
+    //   format: "mm/dd/yyyy"
     });
   }
 
